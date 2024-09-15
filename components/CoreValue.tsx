@@ -79,6 +79,7 @@ function CoreValue() {
             dàng tiếp cận thông tin thông qua mã QR code
           </p>
           <div></div>
+         
         </div>
       </div>
     </section>

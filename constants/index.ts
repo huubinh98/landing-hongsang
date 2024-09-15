@@ -1,6 +1,6 @@
 export const Ingredient = [
   {
-    img: "/img/durian.png",
+    img: "/img/hongsang_sr.jpg",
     title: "Vùng nguyên liệu sầu riêng",
     content: [
       "Tổng sản lượng: Dự kiến  1,5 triệu tấn năm 2024.",
@@ -10,7 +10,7 @@ export const Ingredient = [
     ],
   },
   {
-    img: "/img/lemon.png",
+    img: "/img/hongsang_chanhleo.jpg",
     title: "Vùng nguyên liệu chanh leo",
     content: [
       "Tổng sản lượng: Dự kiến 188.900 tấn năm 2024.",
@@ -20,7 +20,7 @@ export const Ingredient = [
     ],
   },
   {
-    img: "/img/coconut.png",
+    img: "/img/hongsang_dua.jpg",
     title: "Vùng nguyên liệu dừa",
     content: [
       "Tổng sản lượng: Sản lượng ước tính 708 triệu trái",
@@ -65,27 +65,33 @@ export const CoreValues = [
 export const Product = [
   {
     name: "Sầu Riêng Ri 6",
-    img: "/img/ri6.png"
+    img: "/img/ri6.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d"
   },
   {
     name: "Sầu Riêng Dona thái",
-    img: "/img/dona-thai.png"
+    img: "/img/dona-thai.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d"
   },
   {
     name: "Sầu Riêng Ri 6 đông lạnh",
-    img: "/img/ri6-donglanh.png"
+    img: "/img/ri6-donglanh.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d"
   },
   {
     name: "Sầu Riêng Ri 6 đông lạnh",
-    img: "/img/ri6-donglanh.png"
+    img: "/img/ri6-donglanh.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d"
   },
   {
     name: "Sầu Riêng Ri 6 đông lạnh",
-    img: "/img/ri6-donglanh.png"
+    img: "/img/ri6-donglanh.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d"
   },
   {
     name: "Sầu riêng Dona Thái đông lạnh",
-    img: "/img/dona-donglanh.png"
+    img: "/img/dona-donglanh.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d"
   }
 ]
 

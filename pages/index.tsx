@@ -18,6 +18,74 @@ import IngredientSection from "@/components/IngredientSection";
 import CoreValue from "@/components/CoreValue";
 
 export default function Home() {
+
+  const [currentLanguage, setCurrentLanguage] = useState("vi"); // Ngôn ngữ hiện tại
+
+  // Hàm lấy tất cả các text nodes của các phần tử
+  const getAllTextNodes = () => {
+    const elements = document.querySelectorAll("header, footer, section, h1, h2, h3, p, span");
+    const textNodes = [];
+
+    elements.forEach((el) => {
+      // Duyệt qua các node con của từng phần tử
+      el.childNodes.forEach((node) => {
+        // Chỉ chọn các node là văn bản (text node)
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") {
+          textNodes.push({ element: node, originalText: node.textContent });
+        }
+      });
+    });
+
+    return textNodes;
+  };
+
+  // Hàm dịch toàn bộ văn bản trên trang
+  const translateAllText = async (targetLanguage) => {
+    if (targetLanguage === currentLanguage) {
+      return; // Không dịch lại nếu chọn cùng ngôn ngữ
+    }
+
+    setCurrentLanguage(targetLanguage); // Cập nhật ngôn ngữ hiện tại
+
+    const textNodes = getAllTextNodes(); // Lấy tất cả các text node
+    const translatedTextMap = {};
+
+    const apiKey = "AIzaSyB_pcYtjwsET9KxyoUBJW0DaJodx3N9MmI"; // Thay YOUR_API_KEY_HERE bằng API Key của bạn
+    const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+
+    // Dịch từng đoạn văn bản
+    for (let i = 0; i < textNodes.length; i++) {
+      const data = {
+        q: textNodes[i].originalText,
+        target: targetLanguage,
+        source: "vi",
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        translatedTextMap[i] = result.data.translations[0].translatedText;
+      } catch (error) {
+        console.error(`Có lỗi khi dịch: ${textNodes[i].originalText}`, error);
+      }
+    }
+
+    // Cập nhật lại các phần tử trên trang với văn bản đã dịch
+    textNodes.forEach((node, index) => {
+      node.element.textContent = translatedTextMap[index];
+    });
+  };
+
+
+
+
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTabblet] = useState(false);
 
@@ -40,6 +108,22 @@ export default function Home() {
 
   return (
     <div className="bg-white">
+
+    <select
+        id="language"
+        onChange={(e) => translateAllText(e.target.value)}
+        defaultValue="vi"
+      >
+        <option value="vi">Tiếng Việt</option>
+        <option value="en">Tiếng Anh</option>
+        <option value="fr">Tiếng Pháp</option>
+        <option value="zh">Tiếng Trung</option>
+        <option value="hi">Tiếng Ấn Độ</option>
+        <option value="th">Tiếng Thái Lan</option>
+        <option value="ru">Tiếng Nga</option>
+        {/* Thêm các ngôn ngữ khác nếu cần */}
+      </select>
+
       {/* Header */}
       <Header />
 
@@ -181,7 +265,8 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <h6 className="mb-3">{item.name}</h6>
-                    <button className="mt-2 border-green-600 border-[1px] hover:bg-green-600 px-4 h-9 rounded-xl hover:text-white transition-all duration-300 transform">
+                    <button className="mt-2 border-green-600 border-[1px] hover:bg-green-600 px-4 h-9 rounded-xl hover:text-white transition-all duration-300 transform" 
+                    onClick={() => window.open(item.link, '_blank')}>
                       Truy xuất nguồn gốc
                     </button>
                   </div>
@@ -222,5 +307,7 @@ export default function Home() {
       {/* Footer */}
       <Footer />
     </div>
+
+
   );
 }
