@@ -6,7 +6,6 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 
 const NewsSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTabblet] = useState(false);
@@ -28,14 +27,6 @@ const NewsSection = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % newsItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + newsItems.length) % newsItems.length);
-  };
-
   return (
     <section className="bg-[#f9f9f4] py-8 md:py-[100px] relative overflow-hidden">
       {!isMobile && (
@@ -50,10 +41,10 @@ const NewsSection = () => {
             <h2 className="text-[40px] font-bold mx-auto md:mx-0">Tin tức về chúng tôi</h2>
             {!isMobile && (
               <div className=" flex items-center gap-6">
-                <div className="swiper-button-next-custom" onClick={nextSlide}>
+                <div className="swiper-button-next-custom">
                   <RiArrowLeftSLine />
                 </div>
-                <div className="swiper-button-prev-custom" onClick={prevSlide}>
+                <div className="swiper-button-prev-custom">
                   <RiArrowRightSLine />
                 </div>
               </div>

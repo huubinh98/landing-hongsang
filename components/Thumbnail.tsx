@@ -2,17 +2,18 @@ import { useState, useRef, useEffect } from "react";
 
 export default function VideoSection() {
   const [isVideoVisible, setIsVideoVisible] = useState(false);
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleThumbnailClick = () => {
     setIsVideoVisible(true);
   };
 
-  const handleClickOutside = (event: any) => {
-    if (videoRef.current && !videoRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (videoRef.current && !videoRef.current.contains(event.target as Node)) {
       setIsVideoVisible(false);
     }
   };
+  
 
   useEffect(() => {
     if (isVideoVisible) {

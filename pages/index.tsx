@@ -1,7 +1,6 @@
-import { CoreValues, Country, Product } from "@/constants";
+import { Country, Product } from "@/constants";
 import Tag from "@/components/Tag";
 import { useEffect, useState } from "react";
-import { RiArrowDownSLine, RiArrowRightSLine } from "@remixicon/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 

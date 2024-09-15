@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import Tag from "./Tag";
 import { CoreValues } from "@/constants";
 import { RiArrowDownSLine, RiArrowRightSLine } from "@remixicon/react";
-import { useDevice } from "@/hooks/useDevice";
 
 function CoreValue() {
   const [isActive, setIsActive] = useState(0);
