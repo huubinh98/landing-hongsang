@@ -28,7 +28,7 @@ const NewsSection = () => {
   }, []);
 
   return (
-    <section className="bg-[#f9f9f4] py-8 md:py-[100px] relative overflow-hidden">
+    <section id="news" className="bg-[#f9f9f4] py-8 md:py-[100px] relative overflow-hidden">
       {!isMobile && (
         <div className="absolute top-0 right-0 z-0">
           <img src="/img/bg-news.png" alt="" />

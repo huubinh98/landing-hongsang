@@ -5,7 +5,7 @@ import Image from "next/image"; // For background image if needed
 
 const Contact = () => {
   return (
-    <section className="bg-white py-16">
+    <section id="contact" className="bg-white py-16">
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-10">
         {/* Left Side - Contact Information */}
         <div className="space-y-6">

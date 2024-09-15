@@ -59,6 +59,7 @@ export default function Home() {
           backgroundPosition: "right center",
           backgroundRepeat: "no-repeat",
         }}
+        id="about"
       >
         <div className="container mx-auto p-4 lg:py-12">
           {/* Sử dụng flex cho màn hình lớn và cột cho màn hình nhỏ */}
@@ -154,7 +155,7 @@ export default function Home() {
 
       {/* Sản phẩm đặc biệt */}
 
-      <section className="bg-gray-100 md:py-12 p-4">
+      <section id="products" className="bg-gray-100 md:py-12 p-4">
         <div className="container mx-auto py-6 md:py-0">
           <Tag text="Sản phẩm" className="mx-auto" />
           <h3 className="text-[40px] font-bold text-center mb-8">
