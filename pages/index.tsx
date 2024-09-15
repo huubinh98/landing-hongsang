@@ -3,10 +3,7 @@ import Tag from "@/components/Tag";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
 import { Navigation } from "swiper/modules";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import VideoSection from "@/components/Thumbnail";
@@ -17,20 +14,27 @@ import Header from "@/components/Header";
 import IngredientSection from "@/components/IngredientSection";
 import CoreValue from "@/components/CoreValue";
 
-export default function Home() {
+// Định nghĩa các kiểu dữ liệu cho các đối tượng
+interface TextNode {
+  element: Node;
+  originalText: string | null;
+}
 
-  const [currentLanguage, setCurrentLanguage] = useState("vi"); // Ngôn ngữ hiện tại
+export default function Home() {
+  const [currentLanguage, setCurrentLanguage] = useState<string>("vi"); // Ngôn ngữ hiện tại
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isTablet, setIsTablet] = useState<boolean>(false);
 
   // Hàm lấy tất cả các text nodes của các phần tử
-  const getAllTextNodes = () => {
+  const getAllTextNodes = (): TextNode[] => {
     const elements = document.querySelectorAll("header, footer, section, h1, h2, h3, p, span");
-    const textNodes = [];
+    const textNodes: TextNode[] = [];
 
     elements.forEach((el) => {
       // Duyệt qua các node con của từng phần tử
       el.childNodes.forEach((node) => {
         // Chỉ chọn các node là văn bản (text node)
-        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") {
+        if (node.nodeType === Node.TEXT_NODE && node?.textContent?.trim() !== "") {
           textNodes.push({ element: node, originalText: node.textContent });
         }
       });
@@ -40,7 +44,7 @@ export default function Home() {
   };
 
   // Hàm dịch toàn bộ văn bản trên trang
-  const translateAllText = async (targetLanguage) => {
+  const translateAllText = async (targetLanguage: string) => {
     if (targetLanguage === currentLanguage) {
       return; // Không dịch lại nếu chọn cùng ngôn ngữ
     }
@@ -48,7 +52,7 @@ export default function Home() {
     setCurrentLanguage(targetLanguage); // Cập nhật ngôn ngữ hiện tại
 
     const textNodes = getAllTextNodes(); // Lấy tất cả các text node
-    const translatedTextMap = {};
+    const translatedTextMap: { [key: number]: string } = {};
 
     const apiKey = "AIzaSyB_pcYtjwsET9KxyoUBJW0DaJodx3N9MmI"; // Thay YOUR_API_KEY_HERE bằng API Key của bạn
     const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
@@ -83,17 +87,11 @@ export default function Home() {
     });
   };
 
-
-
-
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTabblet] = useState(false);
-
   useEffect(() => {
     // Xác định màn hình mobile khi component mount
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 640);
-      setIsTabblet(window.innerWidth > 640 && window.innerWidth <= 1024);
+      setIsTablet(window.innerWidth > 640 && window.innerWidth <= 1024);
     };
 
     // Gọi hàm handleResize ngay khi component được mount
@@ -108,8 +106,7 @@ export default function Home() {
 
   return (
     <div className="bg-white">
-
-    <select
+      <select
         id="language"
         onChange={(e) => translateAllText(e.target.value)}
         defaultValue="vi"
@@ -136,7 +133,6 @@ export default function Home() {
       ></section>
 
       {/* Về chúng tôi */}
-
       <section
         style={{
           backgroundImage: "url(/img/bg-about.png)",
@@ -208,7 +204,6 @@ export default function Home() {
       </section>
 
       {/* Vùng nguyên liệu */}
-
       <IngredientSection />
 
       <section className="p-20">
@@ -238,7 +233,6 @@ export default function Home() {
       <CoreValue />
 
       {/* Sản phẩm đặc biệt */}
-
       <section id="products" className="bg-gray-100 md:py-12 p-4">
         <div className="container mx-auto py-6 md:py-0">
           <Tag text="Sản phẩm" className="mx-auto" />
@@ -307,7 +301,5 @@ export default function Home() {
       {/* Footer */}
       <Footer />
     </div>
-
-
   );
 }
