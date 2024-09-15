@@ -1,0 +1,74 @@
+@import "mixin";
+
+
+.videomodal {
+  --maxwidth: 60%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  display: none;
+  transition: 0.3s;
+  .video_wrap {
+    // width: calc(100vw - var(--widthwrap));
+    width: 100%;
+    max-width: var(--maxwidth);
+    margin: auto;
+    .video_item {
+      width: 100%;
+      height: 100%;
+    //   height: 0;
+      padding-bottom: 56.25%;
+      border: 3px solid #ccc;
+      background: #010101;
+      position: relative;
+      transition: 0.3s;
+      iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+      .close {
+        --pts: -20px;
+        position: absolute;
+        top: var(--pts);
+        right: var(--pts);
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: pb;
+        cursor: pointer;
+      }
+    }
+  }
+  @include sm {
+    --maxwidth: 80%;
+  }
+  @include xs {
+    --maxwidth: 90%;
+  }
+}
+
+
+.swiper-button-next-custom, .swiper-button-prev-custom {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4); /* Thêm nền cho nút để nổi bật hơn */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @apply cursor-pointer hover:bg-slate-600 transition-all duration-150
+
+  }
+
+  
+  
