@@ -221,8 +221,8 @@ function CoreValue() {
           ))}
         </ul>
         <div className="bg-[#EDDD5E] col-span-8 min-h-[400px] p-6">
-          <h5>{currentContent?.title}</h5>
-          <p dangerouslySetInnerHTML={{__html: currentContent.content}}></p> {/* Hiển thị nội dung hiện tại */}
+          <h5 className="mb-4">{currentContent?.title}</h5>
+          {currentContent.content}
         </div>
       </div>
     </section>
@@ -273,7 +273,7 @@ function CoreValue() {
                   }}
                 >
                   <div className="p-4 border-t">
-                  <p dangerouslySetInnerHTML={{__html: currentContent}}></p> {/* Hiển thị nội dung hiện tại */}
+                    {currentContent.content}
                   </div>
                 </div>
               </li>
