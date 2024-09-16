@@ -57,21 +57,25 @@ export const Country = [
 export const CoreValues = [
   {
     title: "Truy xuất nguồn gốc",
+    imgs: ["/img/qr-saurieng.png", "/img/qr-chanhday.png", "/img/qr-dua.png"],
     content:
       "<p>Minh bạch hoá toàn bộ quy trình canh tác, thu mua, chế biến bằng hệ thống truy xuất nguồn gốc Green Check. Giúp khách hàng, đối tác dễ dàng tiếp cận thông tin thông qua mã QR code</p>",
   },
   {
     title: "Nhà máy đạt tiêu chuẩn HACCP",
+    imgs: [],
     content:
       "<p>Sản phẩm đạt theo tiêu chuẩn HACCP (Hazard Analysis and Critical Control Points), đảm bảo an toàn vệ sinh thực phẩm từ khâu thu hoạch đến khi thành phẩm</p>",
   },
   {
     title: "Năng lực thu mua",
+    imgs: ["/img/thumua.jpg"],
     content:
       "<p>Hiện tại công ty đang liên kết với 13 mã vùng trồng, tổng diện tích 804,56 Ha</p>",
   },
   {
     title: "Sản phẩm",
+    imgs: ["/img/saurieng.png", "/img/chanhday.png", "/img/dua.png"],
     content: `<p>Sầu riêng: Cung cấp Sầu Riêng chất lượng cao, trồng theo tiêu chuẩn GAP và sử dụng công nghệ cấp đông Nitơ tiên tiến.<br />
               Chanh leo: Sản phẩm trồng theo tiêu chuẩn Global GAP, đảm bảo chất lượng và nguồn gốc.<br />
               Dừa xiêm: Dừa xiêm xanh từ cây trên 4 năm tuổi, được lột vỏ và làm sạch, mang đến sự tiện dụng.</p>`,
@@ -85,7 +89,7 @@ export const Product = [
     link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
   },
   {
-    name: "Sầu Riêng Dona thái",
+    name: "Sầu Riêng Dona",
     img: "/img/dona-thai.png",
     link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
   },
@@ -105,7 +109,7 @@ export const Product = [
     link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
   },
   {
-    name: "Sầu riêng Dona Thái đông lạnh",
+    name: "Sầu riêng Dona đông lạnh",
     img: "/img/dona-donglanh.png",
     link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
   },

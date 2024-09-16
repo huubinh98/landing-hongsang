@@ -138,44 +138,6 @@ const Contact = () => {
           </form>
         </div>
       </div>
-
-      <div className="bg-yellow-400 py-6 mt-10">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-white text-sm">
-          <div className="space-x-0 md:space-x-4 text-[#404A3D] text-center md:text-left mb-4 md:mb-0">
-            <span className="mr-2">FARMERS</span>
-            <span className="mr-2">ORGANIC</span>
-            <span className="mr-2">FOODS</span>
-            <span>PRODUCT</span>
-          </div>
-          <div className="space-y-4 md:space-y-0 md:space-x-6 flex flex-col md:flex-row md:items-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-                <RiPhoneLine color="#404A3D" />
-              </div>
-              <span className="text-[#404A3D]">Phone: (+84) 853 926 778</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-                <RiMailLine color="#404A3D" />
-              </div>
-              <span className="text-[#404A3D]">
-                Email: ctyhongsang78@gmail.com
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-                <Image
-                  height={20}
-                  width={20}
-                  src={"/img/tax-small.png"}
-                  alt=""
-                />
-              </div>
-              <span className="text-[#404A3D]">1201606071</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

@@ -1,10 +1,8 @@
 import { Country, Product } from "@/constants";
-import Tag from "@/components/Tag";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay, FreeMode, Navigation } from "swiper/modules";
-import "swiper/css";
 import "swiper/css/navigation";
 import VideoSection from "@/components/Thumbnail";
 import NewsSection from "@/components/NewSection";
@@ -13,125 +11,36 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import IngredientSection from "@/components/IngredientSection";
 import CoreValue from "@/components/CoreValue";
-
-// Định nghĩa các kiểu dữ liệu cho các đối tượng
-interface TextNode {
-  element: Node;
-  originalText: string | null;
-}
+import Tag from "@/components/Tag";
 
 export default function Home() {
-  const [currentLanguage, setCurrentLanguage] = useState<string>("vi"); // Ngôn ngữ hiện tại
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isTablet, setIsTablet] = useState<boolean>(false);
+  const [showButton, setShowButton] = useState(false);
 
-  // Hàm lấy tất cả các text nodes của các phần tử
-  const getAllTextNodes = (): TextNode[] => {
-    const elements = document.querySelectorAll(
-      "header, footer, section, article, aside, nav, main, div, h1, h2, h3, h4, h5, h6, p, span, a, li, strong, em, b, i, label, button, blockquote, cite, figcaption, q, time, mark, small, abbr, dfn, caption, th, td"
-    );
-    const textNodes: TextNode[] = [];
-
-    elements.forEach((el) => {
-      // Duyệt qua các node con của từng phần tử
-      el.childNodes.forEach((node) => {
-        // Chỉ chọn các node là văn bản (text node)
-        if (
-          node.nodeType === Node.TEXT_NODE &&
-          node?.textContent?.trim() !== ""
-        ) {
-          textNodes.push({ element: node, originalText: node.textContent });
-        }
-      });
-    });
-
-    return textNodes;
-  };
-
-  // Hàm dịch toàn bộ văn bản trên trang
-  const translateAllText = async (targetLanguage: string) => {
-    if (targetLanguage === currentLanguage) {
-      return; // Không dịch lại nếu chọn cùng ngôn ngữ
-    }
-
-    setCurrentLanguage(targetLanguage); // Cập nhật ngôn ngữ hiện tại
-
-    const textNodes = getAllTextNodes(); // Lấy tất cả các text node
-    const translatedTextMap: { [key: number]: string } = {};
-
-    const apiKey = "AIzaSyB_pcYtjwsET9KxyoUBJW0DaJodx3N9MmI"; // Thay YOUR_API_KEY_HERE bằng API Key của bạn
-    const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
-
-    // Dịch từng đoạn văn bản
-    for (let i = 0; i < textNodes.length; i++) {
-      const data = {
-        q: textNodes[i].originalText,
-        target: targetLanguage,
-        source: "vi",
-      };
-
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-        translatedTextMap[i] = result.data.translations[0].translatedText;
-      } catch (error) {
-        console.error(`Có lỗi khi dịch: ${textNodes[i].originalText}`, error);
-      }
-    }
-
-    // Cập nhật lại các phần tử trên trang với văn bản đã dịch
-    textNodes.forEach((node, index) => {
-      node.element.textContent = translatedTextMap[index];
-    });
-  };
-
+  // Handle screen resize for mobile/tablet detection
   useEffect(() => {
-    // Xác định màn hình mobile khi component mount
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 640);
       setIsTablet(window.innerWidth > 640 && window.innerWidth <= 1024);
     };
-
-    // Gọi hàm handleResize ngay khi component được mount
     handleResize();
-
-    // Lắng nghe sự kiện thay đổi kích thước màn hình
     window.addEventListener("resize", handleResize);
-
-    // Cleanup event listener khi component unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const [showButton, setShowButton] = useState(false);
-
+  // Handle scroll to show "back to top" button
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
+      setShowButton(window.scrollY > 300);
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="bg-white">
-      {/* Header */}
-      <Header
-        currentLanguage={currentLanguage}
-        onLanguageChange={translateAllText}
-      />
+      <Header />
 
       {/* Banner */}
       <section
@@ -141,7 +50,7 @@ export default function Home() {
         style={{ backgroundImage: "url('/img/banner.jpg')" }}
       ></section>
 
-      {/* Về chúng tôi */}
+      {/* About Section */}
       <section
         style={{
           backgroundImage: "url(/img/bg-about.png)",
@@ -151,16 +60,14 @@ export default function Home() {
         id="about"
       >
         <div className="container mx-auto p-4 lg:py-12">
-          {/* Sử dụng flex cho màn hình lớn và cột cho màn hình nhỏ */}
           <div className="flex flex-col-reverse md:flex-row space-y-6 md:space-y-0 md:space-x-6">
-            {/* Hình ảnh sẽ chiếm 100% chiều rộng trên màn hình nhỏ và 1/2 trên màn hình lớn */}
             <img
               src="/img/about.jpg"
               alt="Hồng Sang"
               className="w-full md:w-1/2 rounded-lg"
             />
             <div className="w-full md:w-1/2">
-              <Tag text="Giới thiệu chung" />
+            <Tag text="Giới thiệu chung" />
               <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8">
                 Công ty TNHH Trái Cây Hồng Sang <br /> (Hongsang Fruit Co., Ltd)
               </h3>
@@ -212,63 +119,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Vùng nguyên liệu */}
+      {/* Other sections */}
       <IngredientSection />
-
-      <section className="p-6 md:p-20">
-        <div className="container mx-auto">
-          <p className="text-center">
-            Hồng sang xuất khẩu hơn{" "}
-            <span className="text-orange-500 font-semibold">10+ quốc gia</span>{" "}
-            trên toàn thế giới và vùng lãnh thổ
-          </p>
-
-          <Swiper
-            slidesPerView={2} // Để các item trượt mượt không bị khóa vào 1 slide
-            spaceBetween={10}
-            loop={true} // Cho phép slider lặp lại vô hạn
-            autoplay={{
-              delay: 0, // Loại bỏ thời gian delay để slider chạy liên tục
-              disableOnInteraction: false, // Giữ autoplay ngay cả khi người dùng tương tác
-            }}
-            speed={3000} // Thời gian trượt giữa các slide (ms)
-            freeMode={true} // Cho phép trượt tự do, không khóa vào từng slide
-            breakpoints={{
-              640: {
-                slidesPerView: 3,
-              },
-              768: {
-                slidesPerView: 5,
-              },
-            }}
-            className="mt-6"
-            modules={[Autoplay, FreeMode]}
-          >
-            {Country.map((item) => (
-              <SwiperSlide key={item.title}>
-                <div className="flex gap-2 items-center justify-center">
-                  <img
-                    srcSet={`${item.img} 2x`}
-                    alt="logo"
-                    className="w-14 h-10"
-                  />
-                  <p className="font-semibold">{item.title}</p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
       <CoreValue />
 
-      {/* Sản phẩm đặc biệt */}
       <section id="products" className="bg-gray-100 md:py-12 p-4">
         <div className="container mx-auto py-6 md:py-0">
-          <Tag text="Sản phẩm" className="mx-auto" />
-          <h3 className="text-[40px] font-bold text-center mb-8">
-            Sản phẩm đặc biệt
-          </h3>
-
           <Swiper
             spaceBetween={50}
             slidesPerView={isMobile ? 1 : isTablet ? 2 : 4}
@@ -302,35 +158,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Chứng nhận */}
-      <section className="py-12 px-4 bg-[#F8F7F0] relative">
-        <div className="absolute top-0 left-0 z-0">
-          <img src="/img/bg-t.png" alt="" />
-        </div>
-        <div className="container mx-auto relative z-10">
-          <h3 className="text-[40px] font-bold text-center mb-8 uppercase">
-            CHỨNG NHẬN CỦA HỒNG SANG
-          </h3>
-          <div className="p-4">
-            <img
-              srcSet="/img/chungnhan.png 2x"
-              alt="Chứng nhận"
-              className="w-96 object-cover rounded-lg mx-auto"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Video chuỗi giá trị */}
       <VideoSection />
-
-      {/* Tin tức */}
       <NewsSection />
-
       <Contact />
-
-      {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
 
       {showButton && (
         <button
