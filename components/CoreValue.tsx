@@ -162,7 +162,7 @@ function CoreValue() {
   const [isActive, setIsActive] = useState(0);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [currentContent, setCurrentContent] = useState<any>({}); // State to store the current content
+  const [currentContent, setCurrentContent] = useState<{title: string; content: string}>({title: "", content: ""}); // State to store the current content
 
   useEffect(() => {
     const handleResize = () => {
