@@ -65,8 +65,10 @@ const Header = () => {
             </div>
           </div>
           <ul className="flex gap-4">
-            <li className="w-8 h-8 bg-[#F8F7F0] rounded-full flex justify-center items-center">
-              <RiFacebookFill color="#adadac" />
+            <li className="w-8 h-8 bg-[#F8F7F0] hover:bg-[#d3d3d0] rounded-full flex justify-center items-center">
+              <a href="https://www.facebook.com/CTyHONGSANG" target="_blank">
+                <RiFacebookFill color="#adadac" />
+              </a>
             </li>
             <li className="w-8 h-8 bg-[#F8F7F0] rounded-full flex justify-center items-center">
               <RiTwitterXFill color="#adadac" />
@@ -129,9 +131,9 @@ const Header = () => {
           <div className="hidden md:block relative">
             <select
               id="language"
-              onChange={(e) =>{
-                sessionStorage.setItem('language', e.target.value);
-                translateAllText(e.target.value)
+              onChange={(e) => {
+                sessionStorage.setItem("language", e.target.value);
+                translateAllText(e.target.value);
               }}
               value={currentLanguage}
               className="p-2 rounded border border-gray-600 hover:border-green-400 focus:outline-none focus:ring-2 transition duration-300 cursor-pointer"
@@ -149,9 +151,9 @@ const Header = () => {
             <div className="relative mr-2">
               <select
                 id="language"
-                onChange={(e) =>{
-                  sessionStorage.setItem('language', e.target.value);
-                  translateAllText(e.target.value)
+                onChange={(e) => {
+                  sessionStorage.setItem("language", e.target.value);
+                  translateAllText(e.target.value);
                 }}
                 value={currentLanguage}
                 className="p-2 rounded border border-gray-600 hover:border-green-400 focus:outline-none focus:ring-2 transition duration-300 cursor-pointer"

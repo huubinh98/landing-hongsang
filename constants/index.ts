@@ -118,22 +118,22 @@ export const Product = [
 export const newsItems = [
   {
     image: "/img/new-1.jpg",
-    title: 'Nữ hoàng sầu riêng" gần 3 tỉ đồng',
+    title: 'Hồng Sang Đẩy Mạnh Minh Bạch Sản Phẩm Với Hệ Thống Green Check',
     link: "https://greencheck.vn/news/doanh-nghiep-len-tieng-ve-lum-xum-dau-gia-3-trai-sau-rieng-gan-3-ti-dong",
   },
   {
     image: "/img/new-2.jpg",
-    title: "Hồng Sang sử dụng hệ thống truy xuất nguồn gốc Green Check",
+    title: "Trúng đấu giá 'Nữ hoàng sầu riêng' sẽ được tặng trái sầu riêng mạ vàng",
     link: "https://greencheck.vn/news/trung-dau-gia-nu-hoang-sau-rieng-se-duoc-tang-trai-sau-rieng-ma-vang",
   },
   {
     image: "/img/new-3.jpg",
-    title: "Lorem ipsum dolor sit amet consectetur. Posuere et faucibus sed",
+    title: "Doanh nghiệp lên tiếng về lùm xùm đấu giá 3 trái sầu riêng gần 3 tỷ đồng",
     link: "https://greencheck.vn/news/hong-sang-su-dung-truy-xuat-nguon-goc-green-check",
   },
   {
     image: "/img/new-1.jpg",
-    title: "Lorem ipsum dolor sit amet consectetur. Posuere et faucibus sed",
+    title: "Huyện Krông Pắc (Đắk Lắk) sẵn sàng cho Lễ hội Sầu riêng lần thứ 2",
     link: "https://greencheck.vn/news/le-hoi-sau-rieng-dak-lak",
   },
 ];
