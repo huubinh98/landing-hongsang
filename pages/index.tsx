@@ -1,13 +1,12 @@
-import { Country, Product } from "@/constants";
+import { Product } from "@/constants";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay, FreeMode, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import VideoSection from "@/components/Thumbnail";
 import NewsSection from "@/components/NewSection";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import IngredientSection from "@/components/IngredientSection";
 import CoreValue from "@/components/CoreValue";

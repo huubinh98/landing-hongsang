@@ -10,11 +10,6 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 
-interface HeaderProps {
-  currentLanguage: string;
-  onLanguageChange: (language: string) => void;
-}
-
 const Header = () => {
   const { currentLanguage, translateAllText } = useTranslation("vi");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
