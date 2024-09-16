@@ -3,7 +3,7 @@ import Tag from "@/components/Tag";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Navigation } from "swiper/modules";
+import { Autoplay, FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import VideoSection from "@/components/Thumbnail";
@@ -27,14 +27,19 @@ export default function Home() {
 
   // Hàm lấy tất cả các text nodes của các phần tử
   const getAllTextNodes = (): TextNode[] => {
-    const elements = document.querySelectorAll("header, footer, section, h1, h2, h3, p, span");
+    const elements = document.querySelectorAll(
+      "header, footer, section, article, aside, nav, main, div, h1, h2, h3, h4, h5, h6, p, span, a, li, strong, em, b, i, label, button, blockquote, cite, figcaption, q, time, mark, small, abbr, dfn, caption, th, td"
+    );
     const textNodes: TextNode[] = [];
 
     elements.forEach((el) => {
       // Duyệt qua các node con của từng phần tử
       el.childNodes.forEach((node) => {
         // Chỉ chọn các node là văn bản (text node)
-        if (node.nodeType === Node.TEXT_NODE && node?.textContent?.trim() !== "") {
+        if (
+          node.nodeType === Node.TEXT_NODE &&
+          node?.textContent?.trim() !== ""
+        ) {
           textNodes.push({ element: node, originalText: node.textContent });
         }
       });
@@ -104,25 +109,29 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="bg-white">
-      <select
-        id="language"
-        onChange={(e) => translateAllText(e.target.value)}
-        defaultValue="vi"
-      >
-        <option value="vi">Tiếng Việt</option>
-        <option value="en">Tiếng Anh</option>
-        <option value="fr">Tiếng Pháp</option>
-        <option value="zh">Tiếng Trung</option>
-        <option value="hi">Tiếng Ấn Độ</option>
-        <option value="th">Tiếng Thái Lan</option>
-        <option value="ru">Tiếng Nga</option>
-        {/* Thêm các ngôn ngữ khác nếu cần */}
-      </select>
-
       {/* Header */}
-      <Header />
+      <Header
+        currentLanguage={currentLanguage}
+        onLanguageChange={translateAllText}
+      />
 
       {/* Banner */}
       <section
@@ -153,7 +162,7 @@ export default function Home() {
             <div className="w-full md:w-1/2">
               <Tag text="Giới thiệu chung" />
               <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8">
-                Công ty TNHH Trái Cây Hồng Sang <br /> (HOSA Fruit Co., Ltd)
+                Công ty TNHH Trái Cây Hồng Sang <br /> (Hongsang Fruit Co., Ltd)
               </h3>
               <p className="text-base md:text-lg">
                 Được thành lập từ năm 2011, chuyên sản xuất và kinh doanh sầu
@@ -206,28 +215,48 @@ export default function Home() {
       {/* Vùng nguyên liệu */}
       <IngredientSection />
 
-      <section className="p-20">
+      <section className="p-6 md:p-20">
         <div className="container mx-auto">
           <p className="text-center">
-            Hosa xuất khẩu hơn{" "}
+            Hồng sang xuất khẩu hơn{" "}
             <span className="text-orange-500 font-semibold">10+ quốc gia</span>{" "}
             trên toàn thế giới và vùng lãnh thổ
           </p>
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-6 mt-6">
+
+          <Swiper
+            slidesPerView={2} // Để các item trượt mượt không bị khóa vào 1 slide
+            spaceBetween={10}
+            loop={true} // Cho phép slider lặp lại vô hạn
+            autoplay={{
+              delay: 0, // Loại bỏ thời gian delay để slider chạy liên tục
+              disableOnInteraction: false, // Giữ autoplay ngay cả khi người dùng tương tác
+            }}
+            speed={3000} // Thời gian trượt giữa các slide (ms)
+            freeMode={true} // Cho phép trượt tự do, không khóa vào từng slide
+            breakpoints={{
+              640: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 5,
+              },
+            }}
+            className="mt-6"
+            modules={[Autoplay, FreeMode]}
+          >
             {Country.map((item) => (
-              <div
-                key={item.title}
-                className="flex gap-2 items-center justify-center"
-              >
-                <img
-                  srcSet={`${item.img} 2x`}
-                  alt="logo"
-                  className="w-14 h-10"
-                />
-                <p className="font-semibold">{item.title}</p>
-              </div>
+              <SwiperSlide key={item.title}>
+                <div className="flex gap-2 items-center justify-center">
+                  <img
+                    srcSet={`${item.img} 2x`}
+                    alt="logo"
+                    className="w-14 h-10"
+                  />
+                  <p className="font-semibold">{item.title}</p>
+                </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
       </section>
       <CoreValue />
@@ -259,8 +288,10 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <h6 className="mb-3">{item.name}</h6>
-                    <button className="mt-2 border-green-600 border-[1px] hover:bg-green-600 px-4 h-9 rounded-xl hover:text-white transition-all duration-300 transform" 
-                    onClick={() => window.open(item.link, '_blank')}>
+                    <button
+                      className="mt-2 border-green-600 border-[1px] hover:bg-green-600 px-4 h-9 rounded-xl hover:text-white transition-all duration-300 transform"
+                      onClick={() => window.open(item.link, "_blank")}
+                    >
                       Truy xuất nguồn gốc
                     </button>
                   </div>
@@ -272,7 +303,7 @@ export default function Home() {
       </section>
 
       {/* Chứng nhận */}
-      <section className="py-12 bg-[#F8F7F0] relative">
+      <section className="py-12 px-4 bg-[#F8F7F0] relative">
         <div className="absolute top-0 left-0 z-0">
           <img src="/img/bg-t.png" alt="" />
         </div>
@@ -300,6 +331,15 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+
+      {showButton && (
+        <button
+          className="fixed bottom-6 w-12 h-12 right-6 p-3 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 transition duration-300"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          ↑
+        </button>
+      )}
     </div>
   );
 }

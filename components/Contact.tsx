@@ -5,8 +5,8 @@ import Image from "next/image"; // For background image if needed
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-white py-16">
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-10">
+    <section id="contact" className="bg-white py-8 md:py-16">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-6 md:px-10">
         {/* Left Side - Contact Information */}
         <div className="space-y-6">
           <h1 className="text-4xl font-bold text-[#4f5d2f]">
@@ -138,77 +138,44 @@ const Contact = () => {
           </form>
         </div>
       </div>
-      {/* <div className="bg-yellow-400 py-6 mt-10">
-        <div className=" container mx-auto ">
-          <div className="flex flex-col md:flex-row justify-between items-center text-white text-sm">
-            <div className="space-x-4 text-[#404A3D] mb-4 md:mb-0">
-              <span>FARMERS</span>
-              <span>ORGANIC</span>
-              <span>FOODS</span>
-              <span>PRODUCT</span>
+
+      <div className="bg-yellow-400 py-6 mt-10">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-white text-sm">
+          <div className="space-x-0 md:space-x-4 text-[#404A3D] text-center md:text-left mb-4 md:mb-0">
+            <span className="mr-2">FARMERS</span>
+            <span className="mr-2">ORGANIC</span>
+            <span className="mr-2">FOODS</span>
+            <span>PRODUCT</span>
+          </div>
+          <div className="space-y-4 md:space-y-0 md:space-x-6 flex flex-col md:flex-row md:items-center">
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
+                <RiPhoneLine color="#404A3D" />
+              </div>
+              <span className="text-[#404A3D]">Phone: (+84) 853 926 778</span>
             </div>
-            <div className="md:space-x-6 flex flex-col md:flex-row items-center">
-              <div className="flex items-center md:space-x-2 mb-4 md:mb-0">
-                <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-                  <RiPhoneLine color="#404A3D" />
-                </div>
-                <span className="text-[#404A3D]">Phone: (+84) 853 926 778</span>
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
+                <RiMailLine color="#404A3D" />
               </div>
-              <div className="flex items-center md:space-x-2 mb-4 md:mb-0">
-                <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-                  <RiMailLine color="#404A3D" />
-                </div>
-                <span className="text-[#404A3D]">
-                  Email: ctyhongsang78@gmail.com
-                </span>
+              <span className="text-[#404A3D]">
+                Email: ctyhongsang78@gmail.com
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
+                <Image
+                  height={20}
+                  width={20}
+                  src={"/img/tax-small.png"}
+                  alt=""
+                />
               </div>
-              <div className="flex items-center md:space-x-2">
-                <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-                  <Image
-                    height={20}
-                    width={20}
-                    src={"/img/tax-small.png"}
-                    alt=""
-                  />
-                </div>
-                <span className="text-[#404A3D]">1201606071</span>
-              </div>
+              <span className="text-[#404A3D]">1201606071</span>
             </div>
           </div>
         </div>
-      </div> */}
-
-<div className="bg-yellow-400 py-6 mt-10">
-  <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-white text-sm">
-    <div className="space-x-0 md:space-x-4 text-[#404A3D] text-center md:text-left mb-4 md:mb-0">
-      <span className="mr-2">FARMERS</span>
-      <span className="mr-2">ORGANIC</span>
-      <span className="mr-2">FOODS</span>
-      <span>PRODUCT</span>
-    </div>
-    <div className="space-y-4 md:space-y-0 md:space-x-6 flex flex-col md:flex-row md:items-center">
-      <div className="flex items-center space-x-2">
-        <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-          <RiPhoneLine color="#404A3D" />
-        </div>
-        <span className="text-[#404A3D]">Phone: (+84) 853 926 778</span>
       </div>
-      <div className="flex items-center space-x-2">
-        <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-          <RiMailLine color="#404A3D" />
-        </div>
-        <span className="text-[#404A3D]">Email: ctyhongsang78@gmail.com</span>
-      </div>
-      <div className="flex items-center space-x-2">
-        <div className="w-10 h-10 bg-white flex justify-center items-center rounded-full">
-          <Image height={20} width={20} src={"/img/tax-small.png"} alt="" />
-        </div>
-        <span className="text-[#404A3D]">1201606071</span>
-      </div>
-    </div>
-  </div>
-</div>
-
     </section>
   );
 };

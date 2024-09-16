@@ -33,12 +33,12 @@ export default function VideoSection() {
     >
       <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
         {!isVideoVisible ? (
-          <div className="flex justify-center items-center flex-col gap-6">
+          <div className="flex justify-center items-center flex-col gap-6 px-6">
             <button className="p-4 rounded-full" onClick={handleThumbnailClick}>
               <img src="/img/play.png" alt="Play" className="w-12 h-12" />
             </button>
             <img srcSet="/img/la.png 2x" alt="Logo" />
-            <p className="text-white font-semibold text-2xl">
+            <p className="text-white font-semibold text-2xl text-center">
               Video chuỗi giá trị sầu riêng Hồng Sang
             </p>
           </div>
