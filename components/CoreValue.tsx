@@ -221,7 +221,7 @@ function CoreValue() {
           ))}
         </ul>
         <div className="bg-[#EDDD5E] col-span-8 min-h-[400px] p-6">
-          <h5 className="mb-4">{currentContent?.title}</h5>
+          <h5 className="mb-6 font-semibold">{currentContent?.title}</h5>
           {currentContent.content}
         </div>
       </div>
