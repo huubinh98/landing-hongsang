@@ -1,11 +1,8 @@
 import useTranslation from "@/hooks/useTranslation";
 import {
   RiFacebookFill,
-  RiInstagramLine,
-  RiLinkedinFill,
   RiMailLine,
   RiPhoneLine,
-  RiTwitterXFill,
 } from "@remixicon/react";
 import Image from "next/image";
 import React, { useState } from "react";
