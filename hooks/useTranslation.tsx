@@ -12,7 +12,7 @@ const useTranslation = (defaultLanguage = "vi") => {
 
   useEffect(() => {
     // Khi component được mount, đọc ngôn ngữ từ localStorage
-    const savedLanguage = localStorage.getItem("language");
+    const savedLanguage = sessionStorage.getItem("language");
     if (savedLanguage) {
       setCurrentLanguage(savedLanguage);
     }
@@ -20,7 +20,7 @@ const useTranslation = (defaultLanguage = "vi") => {
 
   useEffect(() => {
     // Khi currentLanguage thay đổi, lưu ngôn ngữ vào localStorage
-    localStorage.setItem("language", currentLanguage);
+    sessionStorage.setItem("language", currentLanguage);
     translateAllText(currentLanguage);
   }, [currentLanguage]);
 

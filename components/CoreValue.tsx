@@ -65,8 +65,8 @@ function CoreValue() {
       });
     }
   }, [currentContent]);
-  
 
+  
   return !isMobile ? (
     <section className="pt-12 bg-[#5B8C51]">
       <Tag
@@ -104,6 +104,7 @@ function CoreValue() {
           <h5 className="mb-4 font-semibold">{currentContent?.title}</h5>
           <div
             id="core-lang"
+            
             dangerouslySetInnerHTML={{ __html: currentContent.content }}
           ></div>
           <div className="flex flex-wrap gap-3 mt-4">

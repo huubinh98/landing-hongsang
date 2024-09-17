@@ -6,12 +6,12 @@ const IngredientSection = () => {
   return (
     <section className="bg-[#F8F7F0] p-4 lg:py-12">
       <div className="container mx-auto">
-        <Tag text={"Vùng nguyên liệu"} className='mx-auto md:mx-0'/>
+        <Tag text={"Vùng nguyên liệu"} className='mx-auto'/>
         <h3 className="text-[40px] font-bold text-center mb-3 md:mb-8">
           Đa dạng với các vùng nguyên liệu
         </h3>
         <p className="text-center mb-3 md:mb-8">
-          Hosa định hướng trở thành đơn vị tiên phong trong sản xuất, sở hữu nhiều
+          Hồng Sang định hướng trở thành đơn vị tiên phong trong sản xuất, sở hữu nhiều
           vùng nguyên liệu rộng lớn.
         </p>
 

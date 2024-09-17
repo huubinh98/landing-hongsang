@@ -42,7 +42,7 @@ const Header = () => {
               <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
                 <RiPhoneLine color="#404A3D" />
               </div>
-              <span className="text-[#404A3D]">Phone: (+84) 853 926 778</span>
+              <span className="text-[#404A3D]">Phone: (+84) 984 725 502 </span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
@@ -64,20 +64,11 @@ const Header = () => {
               <span className="text-[#404A3D]">Tax: 1201606071</span>
             </div>
           </div>
-          <ul className="flex gap-4">
+          <ul className="flex gap-4 mt-4 md:mt-0">
             <li className="w-8 h-8 bg-[#F8F7F0] hover:bg-[#d3d3d0] rounded-full flex justify-center items-center">
               <a href="https://www.facebook.com/CTyHONGSANG" target="_blank">
                 <RiFacebookFill color="#adadac" />
               </a>
-            </li>
-            <li className="w-8 h-8 bg-[#F8F7F0] rounded-full flex justify-center items-center">
-              <RiTwitterXFill color="#adadac" />
-            </li>
-            <li className="w-8 h-8 bg-[#F8F7F0] rounded-full flex justify-center items-center">
-              <RiLinkedinFill color="#adadac" />
-            </li>
-            <li className="w-8 h-8 bg-[#F8F7F0] rounded-full flex justify-center items-center">
-              <RiInstagramLine color="#adadac" />
             </li>
           </ul>
         </div>
@@ -85,7 +76,7 @@ const Header = () => {
       <header className="bg-white shadow-md">
         <div className="container mx-auto flex justify-between items-center py-4">
           <div className="flex items-center">
-            <img src="/img/logo.png" alt="HOSA Fruit" className="h-12" />
+            <img src="/img/logo.png" alt="Hongsang Fruit" className="h-12" />
           </div>
 
           {/* Desktop Navigation */}

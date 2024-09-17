@@ -57,6 +57,7 @@ const NewsSection = () => {
         </div>
         <Swiper
           spaceBetween={26}
+          loop={true}
           slidesPerView={isMobile ? 1 : isTablet ? 2 : 3.15}
           autoplay={{ delay: 3000 }}
           navigation={{
@@ -69,7 +70,7 @@ const NewsSection = () => {
           {newsItems.map((item, idx) => (
             <SwiperSlide key={idx}>
               <a
-                href="https://greencheck.vn/news/hong-sang-su-dung-truy-xuat-nguon-goc-green-check"
+                href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative w-full md:w-[380px] h-[380px] group overflow-hidden rounded-lg"

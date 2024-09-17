@@ -23,9 +23,8 @@ export const Ingredient = [
     img: "/img/hongsang_dua.jpg",
     title: "Vùng nguyên liệu dừa",
     content: [
-      "Tổng sản lượng: Sản lượng ước tính 708 triệu trái",
+      "Tổng sản lượng: Năm 2024 sản lượng ước tính 708 triệu trái",
       "Tổng kim ngạch xuất khẩu: Kim ngạch xuất khẩu dừa tươi của Việt Nam có thể vượt mốc 1 tỷ USD.",
-      "Bao tiêu sản lượng chanh dây tại Huyện Cư M’gar tỉnh Đắk Lắk",
       "Các thị trường đã xuất khẩu: Châu Âu",
     ],
   },
@@ -63,7 +62,7 @@ export const CoreValues = [
   },
   {
     title: "Nhà máy đạt tiêu chuẩn HACCP",
-    imgs: [],
+    imgs: ["/img/chungnhan.png"],
     content:
       "<p>Sản phẩm đạt theo tiêu chuẩn HACCP (Hazard Analysis and Critical Control Points), đảm bảo an toàn vệ sinh thực phẩm từ khâu thu hoạch đến khi thành phẩm</p>",
   },
@@ -90,49 +89,50 @@ export const Product = [
   },
   {
     name: "Sầu Riêng Dona",
-    img: "/img/dona-thai.png",
+    img: "/img/dona-prod.png",
     link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
   },
   {
     name: "Sầu Riêng Ri 6 đông lạnh",
-    img: "/img/ri6-donglanh.png",
-    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
-  },
-  {
-    name: "Sầu Riêng Ri 6 đông lạnh",
-    img: "/img/ri6-donglanh.png",
-    link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
-  },
-  {
-    name: "Sầu Riêng Ri 6 đông lạnh",
-    img: "/img/ri6-donglanh.png",
+    img: "/img/ri6-donglanh-prod.png",
     link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
   },
   {
     name: "Sầu riêng Dona đông lạnh",
-    img: "/img/dona-donglanh.png",
+    img: "/img/dona-donglanh-prod.png",
     link: "https://api.greencheck.vn/api/qrCode/66e43ec6e1638d63b532561d",
+  },
+  {
+    name: "Chanh dây",
+    img: "/img/chanhday-prod.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e4331805988f68dec102a1",
+  },
+  {
+    name: "Dừa xiêm",
+    img: "/img/duaxiem-prod.png",
+    link: "https://api.greencheck.vn/api/qrCode/66e4ef304e3944062f272ea4",
   },
 ];
 
+
 export const newsItems = [
   {
-    image: "/img/new-1.jpg",
+    image: "/img/new-1.jpeg",
     title: 'Hồng Sang Đẩy Mạnh Minh Bạch Sản Phẩm Với Hệ Thống Green Check',
     link: "https://greencheck.vn/news/doanh-nghiep-len-tieng-ve-lum-xum-dau-gia-3-trai-sau-rieng-gan-3-ti-dong",
   },
   {
-    image: "/img/new-2.jpg",
+    image: "/img/new-2.jpeg",
     title: "Trúng đấu giá 'Nữ hoàng sầu riêng' sẽ được tặng trái sầu riêng mạ vàng",
     link: "https://greencheck.vn/news/trung-dau-gia-nu-hoang-sau-rieng-se-duoc-tang-trai-sau-rieng-ma-vang",
   },
   {
-    image: "/img/new-3.jpg",
+    image: "/img/new-3.png",
     title: "Doanh nghiệp lên tiếng về lùm xùm đấu giá 3 trái sầu riêng gần 3 tỷ đồng",
     link: "https://greencheck.vn/news/hong-sang-su-dung-truy-xuat-nguon-goc-green-check",
   },
   {
-    image: "/img/new-1.jpg",
+    image: "/img/new-4.jpeg",
     title: "Huyện Krông Pắc (Đắk Lắk) sẵn sàng cho Lễ hội Sầu riêng lần thứ 2",
     link: "https://greencheck.vn/news/le-hoi-sau-rieng-dak-lak",
   },

@@ -43,10 +43,11 @@ export default function Home() {
 
       {/* Banner */}
       <section
-        className="relative bg-cover bg-center h-[310px] 
-              sm:min-h-[calc(100vh-80px)] md:min-h-[80vh] 
-              lg:min-h-[60vh] xl:min-h-[70vh]"
-        style={{ backgroundImage: "url('/img/banner.jpg')" }}
+        className="relative bg-cover bg-center w-full" // Đảm bảo banner chiếm toàn bộ chiều rộng
+        style={{
+          backgroundImage: "url('/img/banner-1.jpg')",
+          paddingTop: "42.857%", // Đây là tỷ lệ 16:9, có thể điều chỉnh tùy thuộc vào tỷ lệ ảnh của bạn
+        }}
       ></section>
 
       {/* About Section */}
