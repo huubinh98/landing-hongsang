@@ -1,32 +1,13 @@
 import useTranslation from "@/hooks/useTranslation";
 import { RiFacebookFill, RiMailLine, RiPhoneLine } from "@remixicon/react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { Autoplay, FreeMode, Navigation } from "swiper/modules";
+import React, {useState } from "react";
+import { Autoplay, FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const Header = () => {
   const { currentLanguage, translateAllText } = useTranslation("en");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTabblet] = useState(false);
-
-  useEffect(() => {
-    // Xác định màn hình mobile khi component mount
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 640);
-      setIsTabblet(window.innerWidth > 640 && window.innerWidth <= 1024);
-    };
-
-    // Gọi hàm handleResize ngay khi component được mount
-    handleResize();
-
-    // Lắng nghe sự kiện thay đổi kích thước màn hình
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup event listener khi component unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
