@@ -213,7 +213,7 @@ const Header = () => {
           <div
             className={`${
               isMenuOpen ? "max-h-screen" : "max-h-0"
-            } overflow-hidden transition-all duration-500 ease-in-out absolute top-[272px] left-0 w-full bg-white shadow-md z-20 md:hidden`}
+            } overflow-hidden transition-all duration-500 ease-in-out absolute top-[117px] left-0 w-full bg-white shadow-md z-20 md:hidden`}
           >
             <nav className="flex flex-col space-y-2 px-6 py-4">
               <a
