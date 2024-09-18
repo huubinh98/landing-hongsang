@@ -9,8 +9,6 @@ const Header = () => {
   const { currentLanguage, translateAllText } = useTranslation("en");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  console.log('currentLanguage', currentLanguage)
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
