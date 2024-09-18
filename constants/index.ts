@@ -123,7 +123,7 @@ export const newsItems = [
   {
     image: "/img/new-1.jpeg",
     title: 'Hồng Sang Đẩy Mạnh Minh Bạch Sản Phẩm Với Hệ Thống Green Check',
-    link: "https://greencheck.vn/news/doanh-nghiep-len-tieng-ve-lum-xum-dau-gia-3-trai-sau-rieng-gan-3-ti-dong",
+    link: "https://greencheck.vn/news/hong-sang-su-dung-truy-xuat-nguon-goc-green-check",
   },
   {
     image: "/img/new-2.jpeg",
@@ -133,7 +133,7 @@ export const newsItems = [
   {
     image: "/img/new-3.png",
     title: "Doanh nghiệp lên tiếng về lùm xùm đấu giá 3 trái sầu riêng gần 3 tỷ đồng",
-    link: "https://greencheck.vn/news/hong-sang-su-dung-truy-xuat-nguon-goc-green-check",
+    link: "https://greencheck.vn/news/doanh-nghiep-len-tieng-ve-lum-xum-dau-gia-3-trai-sau-rieng-gan-3-ti-dong",
   },
   {
     image: "/img/new-4.jpeg",
