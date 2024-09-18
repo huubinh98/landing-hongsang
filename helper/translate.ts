@@ -48,7 +48,7 @@ export const translateSpecificText = async (
   const data = {
     q: textsToTranslate,
     target: targetLanguage,
-    source: "vi",
+    // source: "vi",
   };
 
   try {

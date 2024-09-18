@@ -81,7 +81,6 @@ const Contact = () => {
                 className="w-full px-4 py-2 border rounded-md text-gray-700"
                 type="text"
                 id="name"
-                placeholder="Nhập họ tên"
               />
             </div>
 
@@ -96,7 +95,6 @@ const Contact = () => {
                 className="w-full px-4 py-2 border rounded-md text-gray-700"
                 type="email"
                 id="email"
-                placeholder="Nhập họ tên"
               />
             </div>
 
@@ -111,7 +109,6 @@ const Contact = () => {
                 className="w-full px-4 py-2 border rounded-md text-gray-700"
                 type="text"
                 id="phone"
-                placeholder="Nhập số điện thoại"
               />
             </div>
 
@@ -125,7 +122,6 @@ const Contact = () => {
               <textarea
                 className="w-full px-4 py-2 border rounded-md text-gray-700"
                 id="message"
-                placeholder="Nhập nội dung"
               ></textarea>
             </div>
 

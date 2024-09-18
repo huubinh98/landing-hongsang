@@ -1,15 +1,32 @@
 import useTranslation from "@/hooks/useTranslation";
-import {
-  RiFacebookFill,
-  RiMailLine,
-  RiPhoneLine,
-} from "@remixicon/react";
+import { RiFacebookFill, RiMailLine, RiPhoneLine } from "@remixicon/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Autoplay, FreeMode, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Header = () => {
-  const { currentLanguage, translateAllText } = useTranslation("vi");
+  const { currentLanguage, translateAllText } = useTranslation("en");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTabblet] = useState(false);
+
+  useEffect(() => {
+    // Xác định màn hình mobile khi component mount
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 640);
+      setIsTabblet(window.innerWidth > 640 && window.innerWidth <= 1024);
+    };
+
+    // Gọi hàm handleResize ngay khi component được mount
+    handleResize();
+
+    // Lắng nghe sự kiện thay đổi kích thước màn hình
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener khi component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -32,48 +49,77 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-yellow-400 py-4">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-white text-sm">
-          <div className="space-y-4 md:space-y-0 md:space-x-6 flex flex-col md:flex-row md:items-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
-                <RiPhoneLine color="#404A3D" />
+      <div className="bg-yellow-400 py-2 px-4 md:px-0">
+        <div className="container mx-auto text-white text-sm">
+          <Swiper
+            slidesPerView={1} // Để các item trượt mượt không bị khóa vào 1 slide
+            spaceBetween={10}
+            loop={true} // Cho phép slider lặp lại vô hạn
+            autoplay={{
+              delay: 0, // Loại bỏ thời gian delay để slider chạy liên tục
+              disableOnInteraction: false, // Giữ autoplay ngay cả khi người dùng tương tác
+            }}
+            speed={5000} // Thời gian trượt giữa các slide (ms)
+            freeMode={true} // Cho phép trượt tự do, không khóa vào từng slide
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 3,
+              },
+            }}
+            className="flex justify-between items-center mx-auto"
+            modules={[Autoplay, FreeMode]}
+          >
+            <SwiperSlide>
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
+                  <RiPhoneLine color="#404A3D" />
+                </div>
+                <span className="text-[#404A3D]">
+                  Phone: (+84) 984 725 502{" "}
+                </span>
               </div>
-              <span className="text-[#404A3D]">Phone: (+84) 984 725 502 </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
-                <RiMailLine color="#404A3D" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
+                  <RiMailLine color="#404A3D" />
+                </div>
+                <span className="text-[#404A3D]">
+                  Email: ctyhongsang78@gmail.com
+                </span>
               </div>
-              <span className="text-[#404A3D]">
-                Email: ctyhongsang78@gmail.com
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
-                <Image
-                  height={20}
-                  width={20}
-                  src={"/img/tax-small.png"}
-                  alt=""
-                />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-white flex justify-center items-center rounded-full">
+                  <Image
+                    height={20}
+                    width={20}
+                    src={"/img/tax-small.png"}
+                    alt=""
+                  />
+                </div>
+                <span className="text-[#404A3D]">Tax: 1201606071</span>
               </div>
-              <span className="text-[#404A3D]">Tax: 1201606071</span>
-            </div>
-          </div>
-          <ul className="flex gap-4 mt-4 md:mt-0">
-            <li className="w-8 h-8 bg-[#F8F7F0] hover:bg-[#d3d3d0] rounded-full flex justify-center items-center">
-              <a href="https://www.facebook.com/CTyHONGSANG" target="_blank">
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="flex items-center space-x-2">
+              <a className="w-8 h-8 bg-[#F8F7F0] hover:bg-[#d3d3d0] rounded-full flex justify-center items-center" href="https://www.facebook.com/CTyHONGSANG" target="_blank">
                 <RiFacebookFill color="#adadac" />
               </a>
-            </li>
-          </ul>
+                <span className="text-[#404A3D]">Facebook</span>
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
       <header className="bg-white shadow-md">
-        <div className="container mx-auto flex justify-between items-center py-4">
+        <div className="container mx-auto flex justify-between items-center py-4 pl-4 md:pl-0">
           <div className="flex items-center">
-            <img src="/img/logo.png" alt="Hongsang Fruit" className="h-12" />
+            <img src="/img/logo.png" alt="Hongsang Fruit" className="h-8 md:h-12" />
           </div>
 
           {/* Desktop Navigation */}
@@ -159,7 +205,7 @@ const Header = () => {
               className="menu-btn focus:outline-none pr-6"
               onClick={toggleMenu}
             >
-              <div className="relative w-8 h-8 flex flex-col justify-between items-center transform transition-all duration-500 ease-in-out">
+              <div className="relative w-6 h-6 flex flex-col justify-between items-center transform transition-all duration-500 ease-in-out">
                 {/* Top bar */}
                 <span
                   className={`block h-1 w-full bg-gray-800 transform transition-all duration-500 ease-in-out ${
@@ -175,7 +221,7 @@ const Header = () => {
                 {/* Bottom bar */}
                 <span
                   className={`block h-1 w-full bg-gray-800 transform transition-all duration-500 ease-in-out ${
-                    isMenuOpen ? "-rotate-45 -translate-y-5" : ""
+                    isMenuOpen ? "-rotate-45 -translate-y-3" : ""
                   }`}
                 ></span>
               </div>

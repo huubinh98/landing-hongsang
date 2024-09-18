@@ -43,15 +43,12 @@ function CoreValue() {
   }, [expandedIndex]);
 
   useEffect(() => {
-    const lang = sessionStorage.getItem("language") || "vi";
+    const lang = sessionStorage.getItem("language") || "en";
   
     // Lấy phần tử h5 và core-lang
-    const titleElement = document.querySelector("h5");
     const contentElement = document.getElementById("core-lang");
   
-    if (titleElement && contentElement) {
-      // Dịch phần tử h5
-      translateSpecificText(titleElement, lang);
+    if (contentElement) {
   
       // Lấy tất cả các phần tử con có tag "p" trong core-lang
       const allChildElements = contentElement.getElementsByTagName("p");
@@ -65,7 +62,6 @@ function CoreValue() {
       });
     }
   }, [currentContent]);
-
   
   return !isMobile ? (
     <section className="pt-12 bg-[#5B8C51]">
@@ -87,7 +83,7 @@ function CoreValue() {
                   : "text-white"
               }`}
               onClick={() => {
-                const lang = sessionStorage.getItem("language") || "vi";
+                const lang = sessionStorage.getItem("language") || "en";
                 const contentElement = document.getElementById("core-lang");
                 setIsActive(idx);
                 setCurrentContent(item); // Cập nhật nội dung khi click vào item
