@@ -45,11 +45,10 @@ function CoreValue() {
   useEffect(() => {
     const lang = sessionStorage.getItem("language") || "en";
   
-    // Lấy phần tử h5 và core-lang
+    // Lấy phần tử core-lang
     const contentElement = document.getElementById("core-lang");
   
     if (contentElement) {
-  
       // Lấy tất cả các phần tử con có tag "p" trong core-lang
       const allChildElements = contentElement.getElementsByTagName("p");
   
@@ -61,8 +60,9 @@ function CoreValue() {
         translateSpecificText(childElement, lang);
       });
     }
-  }, [currentContent]);
-  
+  }, [currentContent]); // thêm currentLanguage làm dependency
+
+
   return !isMobile ? (
     <section className="pt-12 bg-[#5B8C51]">
       <Tag
@@ -83,12 +83,8 @@ function CoreValue() {
                   : "text-white"
               }`}
               onClick={() => {
-                const lang = sessionStorage.getItem("language") || "en";
-                const contentElement = document.getElementById("core-lang");
                 setIsActive(idx);
-                setCurrentContent(item); // Cập nhật nội dung khi click vào item
-                console.log("contentElement", contentElement);
-                contentElement && translateSpecificText(contentElement, lang);
+                setCurrentContent(item);
               }}
             >
               {idx === isActive ? <RiArrowDownSLine /> : <RiArrowRightSLine />}
@@ -99,7 +95,6 @@ function CoreValue() {
         <div className="bg-[#EDDD5E] col-span-8 min-h-[400px] p-6">
           <div
             id="core-lang"
-            
             dangerouslySetInnerHTML={{ __html: currentContent.content }}
           ></div>
           <div className="flex flex-wrap gap-3 mt-4">
@@ -195,3 +190,6 @@ function CoreValue() {
 }
 
 export default CoreValue;
+
+
+

@@ -9,10 +9,11 @@ interface TextNode {
 const useTranslation = (defaultLanguage = "en") => {
   const [currentLanguage, setCurrentLanguage] =
     useState<string>(defaultLanguage);
-    const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     // Khi component được mount, đọc ngôn ngữ từ localStorage
+    translateAllText(currentLanguage);
     const savedLanguage = sessionStorage.getItem("language");
     if (savedLanguage) {
       setCurrentLanguage(savedLanguage);
@@ -92,7 +93,7 @@ const useTranslation = (defaultLanguage = "en") => {
             textNodeStore.get(node.element) || node.originalText;
         }
       });
-      setCurrentLanguage(targetLanguage)
+      setCurrentLanguage(targetLanguage);
       setLoading(false);
       return;
     }
@@ -102,34 +103,60 @@ const useTranslation = (defaultLanguage = "en") => {
     const apiKey = "AIzaSyB_pcYtjwsET9KxyoUBJW0DaJodx3N9MmI"; // Replace with your actual API Key
     const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
 
-        // Sử dụng Promise.all để thực hiện tất cả các yêu cầu dịch song song
-    const translationPromises = textNodes.map(async (node, index) => {
+    // Sử dụng Promise.all để thực hiện tất cả các yêu cầu dịch song song
+    // const translationPromises = textNodes.map(async (node, index) => {
+    //   const data = {
+    //     q: node.originalText,
+    //     target: targetLanguage,
+    //     // source: currentLanguage,
+    //   };
+    //   try {
+    //     setLoading(true);
+    //     const response = await fetch(url, {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify(data),
+    //     });
+    //     const result = await response.json();
+    //     translatedTextMap[index] = result.data.translations[0].translatedText;
+    //   } catch (error) {
+    //     console.error(`Error translating: ${node.originalText}`, error);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // });
+
+    // await Promise.all(translationPromises);
+
+    //  textNodes.forEach((node, index) => {
+    //   node.element.textContent = translatedTextMap[index];
+    // });
+
+    const textToTranslate = textNodes.map((node) => node.originalText);
+
+    try {
       const data = {
-        q: node.originalText,
+        q: textToTranslate,
         target: targetLanguage,
-        // source: currentLanguage,
       };
-      try {
-        setLoading(true);
-        const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
-        const result = await response.json();
-        translatedTextMap[index] = result.data.translations[0].translatedText;
-      } catch (error) {
-        console.error(`Error translating: ${node.originalText}`, error);
-      } finally {
-        setLoading(false);
-      }
-    });
 
-    await Promise.all(translationPromises);
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-     textNodes.forEach((node, index) => {
-      node.element.textContent = translatedTextMap[index];
-    });
+      const result = await response.json();
+      const translations = result.data.translations;
+
+      // Áp dụng kết quả dịch cho từng node
+      textNodes.forEach((node, index) => {
+        node.element.textContent =
+          translations[index]?.translatedText || node.originalText;
+      });
+    } catch (error) {
+      console.error("Error translating text:", error);
+    }
 
     setLoading(false);
   };

@@ -1,5 +1,5 @@
-import { Country, Product } from "@/constants";
-import { useEffect, useState } from "react";
+import { CoreValues, Country, Product } from "@/constants";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay, FreeMode, Navigation } from "swiper/modules";
@@ -9,17 +9,17 @@ import NewsSection from "@/components/NewSection";
 import Contact from "@/components/Contact";
 import Header from "@/components/Header";
 import IngredientSection from "@/components/IngredientSection";
-import CoreValue from "@/components/CoreValue";
 import Tag from "@/components/Tag";
 import useTranslation from "@/hooks/useTranslation";
 import Loading from "@/components/Loading";
+import { RiArrowDownSLine, RiArrowRightSLine } from "@remixicon/react";
+import Image from "next/image";
+import { translateSpecificText } from "@/helper/translate";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isTablet, setIsTablet] = useState<boolean>(false);
   const [showButton, setShowButton] = useState(false);
-
-  const { loading } = useTranslation();
 
   // Handle screen resize for mobile/tablet detection
   useEffect(() => {
@@ -40,6 +40,45 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  //-------------func corevalue---------------
+  const [currentContent, setCurrentContent] = useState<{
+    title: string;
+    content: string;
+    imgs: string[];
+  }>(CoreValues[0]);
+
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [isActive, setIsActive] = useState(0);
+  const { loading, currentLanguage } = useTranslation("en");
+  const contentRefs = useRef<HTMLDivElement[]>([]);
+
+  const toggleItem = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+    // setCurrentContent(CoreValues[index]); // Cập nhật nội dung khi click vào item
+  };
+
+    useEffect(() => {
+    const lang = sessionStorage.getItem("language") || "en";
+  
+    // Lấy phần tử core-lang
+    const contentElement = document.getElementById("core-lang");
+  
+    if (contentElement) {
+      // Lấy tất cả các phần tử con có tag "p" trong core-lang
+      const allChildElements = contentElement.getElementsByTagName("p");
+  
+      // Chuyển đổi HTMLCollection thành mảng
+      const childElementsArray = Array.from(allChildElements);
+  
+      // Dịch từng phần tử con nếu có
+      childElementsArray.forEach((childElement) => {
+        translateSpecificText(childElement, lang);
+      });
+    }
+  }, [currentContent, currentLanguage]);
+
+  //-------------------------------
 
   return (
     <div className="bg-white">
@@ -178,7 +217,138 @@ export default function Home() {
               </Swiper>
             </div>
           </section>
-          <CoreValue />
+
+          {isMobile ? (
+            <section className="py-6 bg-[#5B8C51]">
+              <div className="container mx-auto p-4">
+                <Tag
+                  text="Giá trị cốt lõi"
+                  className="!text-[#5B8C51] mx-auto text-center bg-white"
+                />
+                <h2 className="text-4xl font-semibold text-white text-center mb-6">
+                  Tại sao chọn <br /> chúng tôi
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-6">
+                  <ul className="col-span-1 sm:col-span-4 w-full">
+                    {CoreValues.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className={`cursor-pointer w-full flex flex-col items-start px-6 py-4 ${
+                          idx === expandedIndex
+                            ? "bg-[#EDDD5E] text-black"
+                            : "text-white"
+                        } ${
+                          idx < CoreValues.length - 1
+                            ? "border-b border-gray-300"
+                            : ""
+                        }`}
+                      >
+                        <div
+                          className="flex items-center w-full py-2"
+                          onClick={() => toggleItem(idx)}
+                        >
+                          {idx === expandedIndex ? (
+                            <RiArrowDownSLine className="text-xl" />
+                          ) : (
+                            <RiArrowRightSLine className="text-xl" />
+                          )}
+                          <span className="ml-4 font-semibold text-lg">
+                            {item.title}
+                          </span>
+                        </div>
+                        <div
+                          ref={(el) => {
+                            if (el && !contentRefs.current.includes(el)) {
+                              contentRefs.current[idx] = el;
+                            }
+                          }}
+                          className={`overflow-hidden transition-all duration-500 ease-out ${
+                            idx === expandedIndex
+                              ? "max-h-[500px] opacity-100"
+                              : "max-h-0 opacity-0"
+                          }`}
+                        >
+                          <div className="p-4 border-t">
+                            <div
+                              id="core-lang"
+                              dangerouslySetInnerHTML={{
+                                __html: item.content, // sử dụng item.content thay vì currentContent.content
+                              }}
+                            ></div>
+                            <div className="flex flex-wrap gap-3 mt-4">
+                              {item.imgs.map((img, imgIdx) => (
+                                <Image
+                                  key={imgIdx}
+                                  src={img}
+                                  width={80}
+                                  height={80}
+                                  className="rounded"
+                                  alt=""
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </section>
+          ) : (
+            <section className="pt-12 bg-[#5B8C51]">
+              <Tag
+                text="Giá trị cốt lõi"
+                className="!text-[#5B8C51] mx-auto text-center bg-white"
+              />
+              <h2 className="text-[40px] font-semibold text-white text-center">
+                Tại sao chọn chúng tôi
+              </h2>
+              <div className="grid grid-cols-12 mt-10">
+                <ul className="col-span-4 ml-auto">
+                  {CoreValues.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className={`font-semibold cursor-pointer w-full h-14 flex items-center max-w-[385px] pl-6 pr-6 ${
+                        idx === isActive
+                          ? "text-inherit bg-[#EDDD5E] rounded-l-2xl"
+                          : "text-white"
+                      }`}
+                      onClick={() => {
+                        setIsActive(idx);
+                        setCurrentContent(item);
+                      }}
+                    >
+                      {idx === isActive ? (
+                        <RiArrowDownSLine />
+                      ) : (
+                        <RiArrowRightSLine />
+                      )}
+                      <span>{item.title}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="bg-[#EDDD5E] col-span-8 min-h-[400px] p-6">
+                  <div
+                    id="core-lang"
+                    dangerouslySetInnerHTML={{ __html: currentContent.content }}
+                  ></div>
+                  <div className="flex flex-wrap gap-3 mt-4">
+                    {currentContent.imgs.map((item, idx) => (
+                      <Image
+                        key={idx}
+                        src={item}
+                        width={150}
+                        height={150}
+                        className="rounded"
+                        alt=""
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
 
           <section id="products" className="bg-gray-100 md:py-12 p-4">
             <div className="container mx-auto py-6 md:py-0">

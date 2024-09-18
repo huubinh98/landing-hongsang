@@ -16,20 +16,29 @@ const Header = () => {
   const hideMobileMenu = () => {
     setIsMenuOpen(false);
   };
-
-  const smoothScroll = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    targetId: string
-  ) => {
-    e.preventDefault();
-    const target = document.getElementById(targetId);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+  const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, target: string) => {
+    e.preventDefault(); // Ngăn hành động mặc định của thẻ <a>
+    
+    if (target === "home") {
+      // Cuộn về đầu trang
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Cuộn mượt mà
+      });
+    } else {
+      const element = document.getElementById(target);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop,
+          behavior: "smooth", // Cuộn mượt mà
+        });
+      }
     }
   };
+  
 
   return (
-    <>
+    <div className="fixed top-0 left-0 w-full h-[188px] z-50">
       <div className="bg-yellow-400 py-2 px-4 md:px-0">
         <div className="container mx-auto text-white text-sm">
           <Swiper
@@ -270,7 +279,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-    </>
+    </div>
   );
 };
 
