@@ -9,6 +9,8 @@ const Header = () => {
   const { currentLanguage, translateAllText } = useTranslation("en");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  console.log('currentLanguage', currentLanguage)
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -153,8 +155,8 @@ const Header = () => {
               value={currentLanguage}
               className="p-2 rounded border border-gray-600 hover:border-green-400 focus:outline-none focus:ring-2 transition duration-300 cursor-pointer"
             >
-              <option value="vi">🇻🇳 Vi</option>
               <option value="en">🇬🇧 En</option>
+              <option value="vi">🇻🇳 Vi</option>
               <option value="zh">🇨🇳 中文</option>
               <option value="hi">🇮🇳 हिन्दी</option>
               <option value="th">🇹🇭 ไทย</option>
@@ -173,8 +175,8 @@ const Header = () => {
                 value={currentLanguage}
                 className="p-2 rounded border border-gray-600 hover:border-green-400 focus:outline-none focus:ring-2 transition duration-300 cursor-pointer"
               >
-                <option value="vi">Vi</option>
                 <option value="en">En</option>
+                <option value="vi">Vi</option>
                 <option value="zh">中文</option>
                 <option value="hi">हिन्दी</option>
                 <option value="th">ไทย</option>

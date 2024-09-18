@@ -10,6 +10,7 @@ const useTranslation = (defaultLanguage = "en") => {
   const [currentLanguage, setCurrentLanguage] =
     useState<string>(defaultLanguage);
     const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     // Khi component được mount, đọc ngôn ngữ từ localStorage
     const savedLanguage = sessionStorage.getItem("language");
@@ -91,6 +92,7 @@ const useTranslation = (defaultLanguage = "en") => {
             textNodeStore.get(node.element) || node.originalText;
         }
       });
+      setCurrentLanguage(targetLanguage)
       setLoading(false);
       return;
     }
