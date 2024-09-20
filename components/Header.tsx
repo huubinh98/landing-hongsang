@@ -38,7 +38,7 @@ const Header = () => {
   
 
   return (
-    <div className="fixed top-0 left-0 w-full h-[188px] z-50">
+    <div className="fixed top-0 left-0 w-full h-[128px] z-50">
       <div className="bg-yellow-400 py-2 px-4 md:px-0">
         <div className="container mx-auto text-white text-sm">
           <Swiper

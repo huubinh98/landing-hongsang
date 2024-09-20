@@ -2,7 +2,7 @@ import { CoreValues, Country, Product } from "@/constants";
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay, FreeMode, Navigation } from "swiper/modules";
+import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import VideoSection from "@/components/Thumbnail";
 import NewsSection from "@/components/NewSection";
@@ -58,19 +58,19 @@ export default function Home() {
     // setCurrentContent(CoreValues[index]); // Cập nhật nội dung khi click vào item
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const lang = sessionStorage.getItem("language") || "en";
-  
+
     // Lấy phần tử core-lang
     const contentElement = document.getElementById("core-lang");
-  
+
     if (contentElement) {
       // Lấy tất cả các phần tử con có tag "p" trong core-lang
       const allChildElements = contentElement.getElementsByTagName("p");
-  
+
       // Chuyển đổi HTMLCollection thành mảng
       const childElementsArray = Array.from(allChildElements);
-  
+
       // Dịch từng phần tử con nếu có
       childElementsArray.forEach((childElement) => {
         translateSpecificText(childElement, lang);
@@ -89,13 +89,59 @@ export default function Home() {
           <Header />
 
           {/* Banner */}
-          <section
-            className="relative bg-cover bg-center w-full" // Đảm bảo banner chiếm toàn bộ chiều rộng
+          {/* <section
+            className="relative bg-cover bg-center w-full mt-[120px]" // Đảm bảo banner chiếm toàn bộ chiều rộng
             style={{
               backgroundImage: "url('/img/banner-1.jpg')",
-              paddingTop: "42.857%", // Đây là tỷ lệ 16:9, có thể điều chỉnh tùy thuộc vào tỷ lệ ảnh của bạn
+              paddingTop: "42.857%", // Đây là tỷ lệ 21:9, có thể điều chỉnh tùy thuộc vào tỷ lệ ảnh của bạn
             }}
-          ></section>
+          ></section> */}
+
+          <section className="relative w-full mt-[120px]">
+            <Swiper
+              spaceBetween={30}
+              centeredSlides={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              // navigation={true}
+              className="mySwiper"
+              modules={[Autoplay, Pagination]}
+            >
+              <SwiperSlide>
+                <div
+                  className="bg-cover bg-center w-full"
+                  style={{
+                    backgroundImage: "url('/img/banner-1.jpg')",
+                    paddingTop: "42.857%", // Tỷ lệ 21:9
+                  }}
+                ></div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div
+                  className="bg-cover bg-center w-full"
+                  style={{
+                    backgroundImage: "url('/img/banner-2.png')",
+                    paddingTop: "42.857%", // Tỷ lệ 21:9
+                  }}
+                ></div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div
+                  className="bg-cover bg-center w-full"
+                  style={{
+                    backgroundImage: "url('/img/banner-3.png')",
+                    paddingTop: "42.857%", // Tỷ lệ 21:9
+                  }}
+                ></div>
+              </SwiperSlide>
+            </Swiper>
+          </section>
 
           {/* About Section */}
           <section
