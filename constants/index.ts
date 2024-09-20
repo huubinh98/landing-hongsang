@@ -127,7 +127,7 @@ export const newsItems = [
   },
   {
     image: "/img/new-2.jpeg",
-    title: "Trúng đấu giá 'Nữ hoàng sầu riêng' sẽ được tặng trái sầu riêng mạ vàng",
+    title: "Trúng đấu giá Nữ hoàng sầu riêng sẽ được tặng trái sầu riêng mạ vàng",
     link: "https://greencheck.vn/news/trung-dau-gia-nu-hoang-sau-rieng-se-duoc-tang-trai-sau-rieng-ma-vang",
   },
   {
